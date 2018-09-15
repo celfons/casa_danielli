@@ -24,7 +24,7 @@ class Paciente(models.Model):
     cpf = models.CharField(max_length=15, blank=True, null=True)
     rg = models.CharField(max_length=15, blank=True, null=True)
     cns = models.CharField(max_length=30, blank=True, null=True)
-    telefone = models.IntegerField(blank=True, null=True)
+    telefone = models.CharField(max_length=20, blank=True, null=True)
     trabalho = models.CharField(max_length=50, blank=True, null=True)
     endereco = models.CharField(max_length=255, blank=True, null=True)
     numero = models.IntegerField(blank=True, null=True)
@@ -46,6 +46,10 @@ class Paciente(models.Model):
         managed = True
         db_table = 'paciente'
 
+    def __str__(self):
+        return self.nome
+
 class Relacionamento(models.Model):
-    from_person = models.ForeignKey(Paciente, related_name='acompanhado', on_delete=models.CASCADE)
-    to_person = models.ForeignKey(Paciente, related_name='acompanhante', on_delete=models.CASCADE)
+    from_paciente = models.ForeignKey(Paciente, related_name='acompanhado', on_delete=models.CASCADE)
+    to_paciente = models.ForeignKey(Paciente, related_name='acompanhante', on_delete=models.CASCADE)
+

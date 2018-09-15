@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'danielli.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'dados',
+        'NAME': 'casa',
         'USER': 'root',
         'PASSWORD': '123',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
