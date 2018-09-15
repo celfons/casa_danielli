@@ -9,6 +9,7 @@ from django.db import models
 
 
 class Paciente(models.Model):
+
     nome = models.CharField(max_length=255, blank=True, null=True)
     cia = models.ManyToManyField('self', blank=True, symmetrical=False, through='Relacionamento')
     prontuario = models.IntegerField(blank=True, null=True)
@@ -41,6 +42,7 @@ class Paciente(models.Model):
     inclusao = models.DateTimeField(blank=True, null=True)
     atualizacao = models.DateTimeField(blank=True, null=True)
     usuario = models.CharField(max_length=255, blank=True, null=True)
+    hospedado = models.BooleanField(default=False)
 
     class Meta:
         managed = True

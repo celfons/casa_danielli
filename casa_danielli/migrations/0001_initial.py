@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('cpf', models.CharField(blank=True, max_length=15, null=True)),
                 ('rg', models.CharField(blank=True, max_length=15, null=True)),
                 ('cns', models.CharField(blank=True, max_length=30, null=True)),
-                ('telefone', models.IntegerField(blank=True, null=True)),
+                ('telefone', models.CharField(blank=True, max_length=20, null=True)),
                 ('trabalho', models.CharField(blank=True, max_length=50, null=True)),
                 ('endereco', models.CharField(blank=True, max_length=255, null=True)),
                 ('numero', models.IntegerField(blank=True, null=True)),
