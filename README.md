@@ -2,6 +2,8 @@ https://docs.docker.com/
 
 https://dev.mysql.com/downloads/installer/
 
+git clone https://github.com/django/django
+
 docker-compose up
 
 docker-compose run web python /code/manage.py createsuperuser

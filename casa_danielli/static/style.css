@@ -1,0 +1,8 @@
+#header{
+	background: #fff;
+	color: black;
+}
+
+#header a:link, #header a:visited {
+    color: #447e9b;
+}
