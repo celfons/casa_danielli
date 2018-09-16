@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Paciente
+from .models import Acompanhamento
 from django import forms
 
 class PacienteInline(admin.TabularInline):
@@ -71,11 +72,18 @@ class PacienteForm(forms.ModelForm):
 
 class PacienteAdmin(admin.ModelAdmin):
     search_fields = ['nome', 'prontuario', 'cpf']
-    list_display = ('nome','prontuario', 'cpf', 'telefone','naturalidade')
+    list_display = ['nome','prontuario', 'cpf', 'telefone','naturalidade']
     inlines = [
         PacienteInline,
     ]
     form = PacienteForm
 
+class AcompanhamentoAdmin(admin.ModelAdmin):
+    list_display = ['inclusao']
+    filter_horizontal = ('nome',)
+    ordering = ['ativo']
+
 admin.site.register(Paciente, PacienteAdmin)
+admin.site.register(Acompanhamento, AcompanhamentoAdmin)
+
 	
