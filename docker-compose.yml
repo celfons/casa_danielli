@@ -18,9 +18,9 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_USER=root
       - MYSQL_DATABASE=casa
-      - MYSQL_PASSWORD=123      
+      - MYSQL_PASSWORD=123     
+      - MYSQL_ROOT_PASSWORD=123 
     volumes:
       - ./data:/var/lib/mysql
   phpmyadmin:
