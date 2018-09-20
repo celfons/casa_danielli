@@ -7,6 +7,7 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 from django.utils import timezone
+from django_userforeignkey.models.fields import UserForeignKey
 
 def return_date_time():
     return timezone.now()
@@ -44,7 +45,7 @@ class Paciente(models.Model):
     validade = models.DateField(blank=True, null=True, default=return_date_time)
     inclusao = models.DateTimeField(blank=True, null=True, default=return_date_time)
     atualizacao = models.DateTimeField(blank=True, null=True)
-    usuario = models.CharField(max_length=255, blank=True, null=True)
+    usario = UserForeignKey(auto_user_add=True)
     hospedado = models.BooleanField(default=False)
 
     class Meta:
@@ -74,7 +75,7 @@ class Acompanhamento(models.Model):
     inclusao = models.DateTimeField(blank=True, null=True, default=return_date_time)
     atualizacao = models.DateTimeField(blank=True, null=True, default=return_date_time)
     ativo = models.BooleanField(default=False)
-    usuario = models.CharField(max_length=255, blank=True, null=True)
+    usario = UserForeignKey(auto_user_add=True)
 
     class Meta:
         managed = True
