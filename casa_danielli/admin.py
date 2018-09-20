@@ -7,6 +7,7 @@ class PacienteInline(admin.TabularInline):
     model = Paciente.cia.through
     fk_name = 'from_paciente' 
     fields = ('to_paciente',)
+    autocomplete_fields = ['to_paciente']
     show_change_link = True
     extra = 1
     verbose_name = "Acompanhante"
@@ -36,33 +37,33 @@ class PacienteForm(forms.ModelForm):
     )
 
     ESTADO = (
-        ('Acre','AC'),
-        ('Alagoas','AL'),
-        ('Amapá','AP'),
-        ('Amazonas','AM'),
-        ('Bahia','BA'),
-        ('Ceará','CE'),
-        ('Distrito Federal','DF'),
-        ('Espírito Santo','ES'),
-        ('Goiás','GO'),
-        ('Maranhão','MA'),
-        ('Mato Grosso','MT'),
-        ('Mato Grosso do Sul','MS'),
-        ('Minas Gerais','MG'),
-        ('Pará','PA'),
-        ('Paraíba','PB'),
-        ('Paraná','PR'),
-        ('Pernambuco','PE'),
-        ('Piauí','PI'),
-        ('Rio de Janeiro','RJ'),
-        ('Rio Grande do Norte','RN'),
-        ('Rio Grande do Sul','RS'),
-        ('Rondônia','RO'),
-        ('Roraima','RR'),
-        ('Santa Catarina','SC'),
-        ('São Paulo','SP'),
-        ('Sergipe','SE'),
-        ('Tocantins','TO'),
+        ('AC','AC'),
+        ('AL','AL'),
+        ('AP','AP'),
+        ('AM','AM'),
+        ('BA','BA'),
+        ('CE','CE'),
+        ('DF','DF'),
+        ('ES','ES'),
+        ('GO','GO'),
+        ('MA','MA'),
+        ('MT','MT'),
+        ('MS','MS'),
+        ('MG','MG'),
+        ('PA','PA'),
+        ('PB','PB'),
+        ('PR','PR'),
+        ('PE','PE'),
+        ('PI','PI'),
+        ('RJ','RJ'),
+        ('RN','RN'),
+        ('RS','RS'),
+        ('RO','RO'),
+        ('RR','RR'),
+        ('SC','SC'),
+        ('SP','SP'),
+        ('SE','SE'),
+        ('TO','TO'),
     )
 
     cor = forms.ChoiceField(choices=COR)    
@@ -79,9 +80,10 @@ class PacienteAdmin(admin.ModelAdmin):
     form = PacienteForm
 
 class AcompanhamentoAdmin(admin.ModelAdmin):
-    list_display = ['inclusao']
-    filter_horizontal = ('nome',)
+    search_fields = ['nome']
+    list_display = ['nome', 'inclusao', 'atualizacao','ativo']
     ordering = ['ativo']
+    autocomplete_fields = ['nome']
 
 admin.site.register(Paciente, PacienteAdmin)
 admin.site.register(Acompanhamento, AcompanhamentoAdmin)

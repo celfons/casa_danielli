@@ -63,7 +63,7 @@ class Relacionamento(models.Model):
 class Acompanhamento(models.Model):
 
     ac_ap = models.CharField(max_length=255, blank=True, null=True)
-    nome = models.ManyToManyField(Paciente, related_name='Acolhidos')
+    nome = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     hospital = models.CharField(max_length=255, blank=True, null=True)
     cafe_manha = models.BooleanField(default=False)
     almoco = models.BooleanField(default=False)
@@ -79,9 +79,5 @@ class Acompanhamento(models.Model):
     class Meta:
         managed = True
         db_table = 'acompanhamento'
-
-class Acolhidos(models.Model):
-    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
-    acompanhamento = models.ForeignKey(Acompanhamento, on_delete=models.CASCADE)
 
 
