@@ -1,20 +1,103 @@
 <html>
 <head>
-  <title>{{ obj.title }}</title>
+  <title>Relatorio</title>
   <style>
-    body {
-      background-color: #f7f7f7;
+   table {
+        border-collapse: collapse;
     }
-    p {
-      text-align: justify;
-      text-justify: inter-word;
+
+    table, td, tr {
+        border: 1px solid black;
     }
-    .text-right {
-      text-align: right;
+    @page {
+      size: letter landscape;
+      margin: 2cm;
     }
   </style>
 </head>
   <body>
-    <h1 class="text-right">Hospital: {{ obj.hospital }}</h1>
+    <img src="logo.jpg">
+    <table>
+      <tr>
+        <td>NOME</td>
+        <td>HOSPITAL</td>
+        <td>AC/AP</td>
+        <td>CAFE DA MANHA</td>
+        <td>ALMOÇO</td>
+        <td>CAFE DA TARDE</td>
+        <td>JANTA</td>
+        <td>BANHO</td>
+        <td>HOSPEDAGEM</td>
+        <td>DATA</td>
+      </tr>
+      <tr>
+      {% for item in obj %}
+        <td>
+          {% if item.nome == NONE %}
+            
+          {% else %}
+            {{item.nome}}
+          {% endif %}
+        </td>
+        <td>
+          {% if item.hospital == NONE %}
+            
+          {% else %}
+            {{item.hospital}}
+          {% endif %}
+        </td>
+        <td>
+          {% if item.acp_ap == NONE %}
+            
+          {% else %}
+            {{item.ac_ap}}
+          {% endif %}
+        </td>
+        <td>
+          {% if item.cafe_manha == False %}
+            NÃO
+          {% else %}
+            SIM
+          {% endif %}
+        </td>
+        <td>
+          {% if item.almoco == False %}
+            NÃO
+          {% else %}
+            SIM
+          {% endif %}
+        </td>
+        <td>
+          {% if item.cafe_tarde == False %}
+            NÃO
+          {% else %}
+            SIM
+          {% endif %}
+        </td>
+        <td>
+          {% if item.janta == False %}
+            NÃO
+          {% else %}
+            SIM
+          {% endif %}
+        </td>
+        <td>
+          {% if item.banho == False %}
+            NÃO
+          {% else %}
+            SIM
+          {% endif %}
+        </td>
+        <td>
+          {% if item.hospedagem == NONE %}
+            
+          {% else %}
+            {{item.hospedagem}}
+          {% endif %}
+        </td>
+        <td>{{ item.inclusao }}</td>
+      {% endfor %}
+      </tr>
+    </table>
   </body>
 </html>

@@ -99,6 +99,7 @@ class AcompanhamentoAdmin(admin.ModelAdmin):
     autocomplete_fields = ['nome']
 
     def generate_pdf(self, request, obj):
+
         html_string = render_to_string('reports/pdf_template.html', {'obj': obj})
 
         html = HTML(string=html_string)
