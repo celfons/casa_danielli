@@ -71,18 +71,27 @@ class PacienteForm(forms.ModelForm):
     estado_civil = forms.ChoiceField(choices=ESTADO_CIVIL)    
     estado = forms.ChoiceField(choices=ESTADO)  
 
+def checkout(modeladmin, request, queryset):
+    queryset.update(hospedado=False)
+checkout.short_description = "Checkout da Hospedagem"
+
+def checkin(modeladmin, request, queryset):
+    queryset.update(hospedado=True)
+checkin.short_description = "Checkin da Hospedagem"
+
 class PacienteAdmin(admin.ModelAdmin):
     search_fields = ['nome', 'prontuario', 'cpf']
-    list_display = ['nome','prontuario', 'cpf', 'telefone','naturalidade']
+    list_display = ['nome','prontuario', 'cpf', 'telefone','naturalidade', 'hospedado']
     inlines = [
         PacienteInline,
     ]
     form = PacienteForm
+    actions = [checkout, checkin]
 
 class AcompanhamentoAdmin(admin.ModelAdmin):
     search_fields = ['nome']
-    list_display = ['nome', 'inclusao', 'atualizacao','ativo']
-    ordering = ['ativo']
+    list_display = ['nome', 'inclusao', 'atualizacao']
+    ordering = ['inclusao']
     autocomplete_fields = ['nome']
 
 admin.site.register(Paciente, PacienteAdmin)

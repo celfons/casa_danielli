@@ -74,7 +74,6 @@ class Acompanhamento(models.Model):
     hospedagem = models.CharField(max_length=255, blank=True, null=True)
     inclusao = models.DateTimeField(blank=True, null=True, default=return_date_time)
     atualizacao = models.DateTimeField(blank=True, null=True, default=return_date_time)
-    ativo = models.BooleanField(default=False)
     usario = UserForeignKey(auto_user_add=True)
 
     class Meta:
