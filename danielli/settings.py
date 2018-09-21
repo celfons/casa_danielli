@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'casa_danielli',
+    'django_object_actions',
     'django_userforeignkey',
+    'casa_danielli',
 ]
 
 MIDDLEWARE = [
