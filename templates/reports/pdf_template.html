@@ -17,7 +17,7 @@
 </head>
   <body>
   {% load static %}
-    <img src="{% static 'logo.jpg' %}" style="width:30%">
+    <img src="{% static 'logo.jpg' %}" style="width:40%">
     <table>
       <tr>
         <td>NOME</td>
@@ -31,8 +31,8 @@
         <td>HOSPEDAGEM</td>
         <td>DATA</td>
       </tr>
-      <tr>
       {% for item in obj %}
+      <tr>
         <td>
           {% if item.nome == NONE %}
             
@@ -97,8 +97,8 @@
           {% endif %}
         </td>
         <td>{{ item.inclusao }}</td>
+        </tr>
       {% endfor %}
-      </tr>
     </table>
   </body>
 </html>
