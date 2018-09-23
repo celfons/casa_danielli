@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'casa',
         'USER': 'root',
         'PASSWORD': '123',
-        'HOST': 'db',   # Or an IP Address that your DB is hosted on
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }

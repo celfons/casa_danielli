@@ -47,6 +47,7 @@ class Paciente(models.Model):
     atualizacao = models.DateTimeField(blank=True, null=True)
     usario = UserForeignKey(auto_user_add=True)
     hospedado = models.BooleanField(default=False)
+    obito = models.BooleanField(default=False)
 
     class Meta:
         managed = True
