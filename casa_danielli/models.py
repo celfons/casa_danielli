@@ -42,9 +42,9 @@ class Paciente(models.Model):
     pai = models.CharField(max_length=255, blank=True, null=True)
     convenio = models.CharField(max_length=255, blank=True, null=True)
     matricula = models.IntegerField(blank=True, null=True)
-    validade = models.DateField(blank=True, null=True, default=return_date_time)
-    inclusao = models.DateTimeField(blank=True, null=True, default=return_date_time)
-    atualizacao = models.DateTimeField(blank=True, null=True)
+    zona = models.IntegerField(blank=True, null=True)
+    inclusao = models.DateField(blank=True, null=True, default=return_date_time)
+    atualizacao = models.DateField(blank=True, null=True)
     usario = UserForeignKey(auto_user_add=True)
     hospedado = models.BooleanField(default=False)
     obito = models.BooleanField(default=False)
@@ -64,17 +64,17 @@ class Relacionamento(models.Model):
 
 class Acompanhamento(models.Model):
 
-    ac_ap = models.CharField(max_length=255, blank=True, null=True)
-    nome = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    ac_ap = models.IntegerField(blank=True, null=True)
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     hospital = models.CharField(max_length=255, blank=True, null=True)
     cafe_manha = models.BooleanField(default=False)
     almoco = models.BooleanField(default=False)
     cafe_tarde = models.BooleanField(default=False)
     banho = models.BooleanField(default=False)
     janta = models.BooleanField(default=False)
-    hospedagem = models.CharField(max_length=255, blank=True, null=True)
-    inclusao = models.DateTimeField(blank=True, null=True, default=return_date_time)
-    atualizacao = models.DateTimeField(blank=True, null=True, default=return_date_time)
+    hospedagem = models.BooleanField(default=False)
+    inclusao = models.DateField(blank=True, null=True, default=return_date_time)
+    saida = models.DateField(blank=True, null=True, default=return_date_time)
     usario = UserForeignKey(auto_user_add=True)
 
     class Meta:

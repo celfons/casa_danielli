@@ -7,6 +7,7 @@
         width: 100%;
         max-width: 100%;
         margin-bottom: 20px;
+        font-size: 11px;
     }
 
     table, td, tr {
@@ -32,15 +33,16 @@
         <td>JANTA</td>
         <td>BANHO</td>
         <td>HOSPEDAGEM</td>
-        <td>DATA</td>
+        <td>ENTRADA</td>
+        <td>SAIDA</td>
       </tr>
       {% for item in obj %}
       <tr>
         <td>
-          {% if item.nome == NONE %}
+          {% if item.paciente == NONE %}
             
           {% else %}
-            {{item.nome}}
+            {{item.paciente}}
           {% endif %}
         </td>
         <td>
@@ -51,10 +53,10 @@
           {% endif %}
         </td>
         <td>
-          {% if item.acp_ap == NONE %}
-            
+          {% if item.acp_ap == 1 %}
+            PACIENTE
           {% else %}
-            {{item.ac_ap}}
+            ACOMPANHANTE
           {% endif %}
         </td>
         <td>
@@ -93,13 +95,14 @@
           {% endif %}
         </td>
         <td>
-          {% if item.hospedagem == NONE %}
-            
+          {% if item.hospedagem == False %}
+            NÃO
           {% else %}
-            {{item.hospedagem}}
+            SIM
           {% endif %}
         </td>
         <td>{{ item.inclusao }}</td>
+        <td>{{ item.saida }}</td>
         </tr>
       {% endfor %}
     </table>

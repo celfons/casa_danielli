@@ -70,10 +70,25 @@ class PacienteForm(forms.ModelForm):
         ('TO','TO'),
     )
 
+    Atendimento = (
+        (1,'QUIMIOTERAPIA'),
+        (2,'RADIOTERAPIA'),
+        (3,'CIRURGIA'),
+        (4,'EXAMES'),
+        (5,'OUTROS'),
+    )
+
+    ZONA = (
+        (1,'URBANA'),
+        (2,'RURAL'),
+    )
+
     cor = forms.ChoiceField(choices=COR)    
     sexo = forms.ChoiceField(choices=SEXO)    
     estado_civil = forms.ChoiceField(choices=ESTADO_CIVIL)    
     estado = forms.ChoiceField(choices=ESTADO)  
+    atendimento = forms.ChoiceField(choices=Atendimento)  
+    zona = forms.ChoiceField(choices=ZONA)  
 
 def checkout(modeladmin, request, queryset):
     queryset.update(hospedado=False)
@@ -92,11 +107,24 @@ class PacienteAdmin(admin.ModelAdmin):
     form = PacienteForm
     actions = [checkout, checkin]
 
+class AcompanhamentoForm(forms.ModelForm):
+    AC_AP = (
+        (1,'PACIENTE'),
+        (2,'ACOMPANHANTE'),
+    )
+
+    ac_ap = forms.ChoiceField(choices=AC_AP)  
+
+
 class AcompanhamentoAdmin(admin.ModelAdmin):
-    search_fields = ['nome']
-    list_display = ['nome', 'inclusao', 'atualizacao']
+    search_fields = ['paciente__nome']
+    list_display = ['paciente', 'cidade', 'inclusao', 'saida']
     ordering = ['inclusao']
-    autocomplete_fields = ['nome']
+    autocomplete_fields = ['paciente']
+    form = AcompanhamentoForm
+
+    def cidade(self, obj):
+        return obj.paciente.cidade
 
     def generate_pdf(self, request, obj):
 
