@@ -74,7 +74,7 @@ class Acompanhamento(models.Model):
     janta = models.BooleanField(default=False)
     hospedagem = models.BooleanField(default=False)
     inclusao = models.DateField(blank=True, null=True, default=return_date_time)
-    saida = models.DateField(blank=True, null=True, default=return_date_time)
+    saida = models.DateField(blank=True, null=True)
     usario = UserForeignKey(auto_user_add=True)
 
     class Meta:

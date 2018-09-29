@@ -117,7 +117,7 @@ class AcompanhamentoForm(forms.ModelForm):
 
 
 class AcompanhamentoAdmin(admin.ModelAdmin):
-    search_fields = ['paciente__nome']
+    search_fields = ['paciente__nome', 'paciente__cidade']
     list_display = ['paciente', 'cidade', 'inclusao', 'saida']
     ordering = ['inclusao']
     autocomplete_fields = ['paciente']

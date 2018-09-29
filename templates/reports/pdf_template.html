@@ -7,7 +7,7 @@
         width: 100%;
         max-width: 100%;
         margin-bottom: 20px;
-        font-size: 11px;
+        font-size: 10px;
     }
 
     table, td, tr {
@@ -17,16 +17,19 @@
       size: letter landscape;
       margin: 2cm;
     }
+    p{
+      font-size: 10px;
+    }
   </style>
 </head>
   <body>
   {% load static %}
-    <img src="{% static 'logo.jpg' %}" style="width:40%">
+    <p>Total de pacientes: {{ obj.count }}</p>
     <table>
       <tr>
         <td>NOME</td>
+        <td>CIDADE</td>
         <td>HOSPITAL</td>
-        <td>AC/AP</td>
         <td>CAFE DA MANHA</td>
         <td>ALMOÇO</td>
         <td>CAFE DA TARDE</td>
@@ -46,17 +49,17 @@
           {% endif %}
         </td>
         <td>
+          {% if item.paciente.cidade == NONE %}
+            
+          {% else %}
+            {{item.paciente.cidade}}
+          {% endif %}
+        </td>
+        <td>
           {% if item.hospital == NONE %}
             
           {% else %}
             {{item.hospital}}
-          {% endif %}
-        </td>
-        <td>
-          {% if item.acp_ap == 1 %}
-            PACIENTE
-          {% else %}
-            ACOMPANHANTE
           {% endif %}
         </td>
         <td>
@@ -102,7 +105,13 @@
           {% endif %}
         </td>
         <td>{{ item.inclusao }}</td>
-        <td>{{ item.saida }}</td>
+        <td>
+          {% if item.saida == NONE %}
+            
+          {% else %}
+            item.saida
+          {% endif %}
+        </td>
         </tr>
       {% endfor %}
     </table>
