@@ -24,7 +24,6 @@
 </head>
   <body>
   {% load static %}
-    <p>Total de pacientes: {{ obj.count }}</p>
     <table>
       <tr>
         <td>NOME</td>
@@ -114,6 +113,63 @@
         </td>
         </tr>
       {% endfor %}
+    </table>
+    <table>
+      <tr>
+        <td>Total Pacientes</td>
+        <td>Total de Cafes da Manha</td>
+        <td>Total Almoços</td>
+        <td>Total de Cafes da Tarde</td>
+        <td>Total Jantas</td>
+        <td>Total de Banhos</td>
+        <td>Total de Pernoites</td>
+        <td>Total</td>
+      </tr>
+      <tr>
+        <td>{{ obj.count }}</td>
+        <td>
+          {% if censo.cafe_manha == NONE %}
+            0
+          {% else %}
+            {{ censo.cafe_manha }}
+          {% endif %}
+        </td>
+        <td>
+          {% if censo.almoco == NONE %}
+            0
+          {% else %}
+            {{ censo.almoco }}
+          {% endif %}
+        </td>
+        <td>
+          {% if censo.cafe_tarde == NONE %}
+            0
+          {% else %}
+            {{ censo.cafe_tarde }}
+          {% endif %}
+        </td>
+        <td>
+          {% if censo.janta == NONE %}
+            0
+          {% else %}
+            {{ censo.janta }}
+          {% endif %}
+        </td>
+        <td>
+          {% if censo.banho == NONE %}
+            0
+          {% else %}
+            {{ censo.banho }}
+          {% endif %}
+        </td>
+        <td>
+          {% if censo.hospedagem == NONE %}
+            0
+          {% else %}
+            {{ censo.hospedagem }}
+          {% endif %}
+        </td>
+      </tr>
     </table>
   </body>
 </html>

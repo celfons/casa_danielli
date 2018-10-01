@@ -128,7 +128,68 @@ class AcompanhamentoAdmin(admin.ModelAdmin):
 
     def generate_pdf(self, request, obj):
 
-        html_string = render_to_string('reports/pdf_template.html', {'obj': obj})
+        censo = []
+
+        count = 0
+        cafe_manha = 0
+        while(count < len(obj)):
+            if (obj[count].cafe_manha == 1):
+                cafe_manha+=1
+            count +=1
+
+        censo.append({"cafe_manha":cafe_manha})
+
+        count = 0
+        almoco = 0
+        while(count < len(obj)):
+            if (obj[count].almoco == 1):
+                almoco+=1
+            count +=1
+
+        censo.append({"almoco":almoco})
+
+        count = 0
+        cafe_tarde = 0
+        while(count < len(obj)):
+            if (obj[count].cafe_tarde == 1):
+                cafe_tarde+=1
+            count +=1
+
+        censo.append({"cafe_tarde":cafe_tarde})
+
+        count = 0
+        banho = 0
+        while(count < len(obj)):
+            if (obj[count].banho == 1):
+                banho+=1
+            count +=1
+
+        censo.append({"banho":banho})
+    
+        count = 0
+        janta = 0
+        while(count < len(obj)):
+            if (obj[count].janta == 1):
+                janta+=1
+            count +=1
+
+        censo.append({"janta":janta})
+
+        count = 0
+        hospedagem = 0
+        while(count < len(obj)):
+            if (obj[count].hospedagem == 1):
+                hospedagem+=1
+            count +=1
+
+        censo.append({"hospedagem":hospedagem})
+
+        context = {
+            'obj': obj,
+            'censo': censo[0]
+        }
+
+        html_string = render_to_string('reports/pdf_template.html', context)
 
         html = HTML(string=html_string, base_url=request.build_absolute_uri())
 
